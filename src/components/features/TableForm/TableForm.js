@@ -1,5 +1,5 @@
 import { Form } from 'react-bootstrap';
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch } from 'react-redux';
 import { updateTableData } from '../../../redux/tablesRedux';
 import clsx from 'clsx';
@@ -10,6 +10,8 @@ const TableForm = props => {
   const [peopleAmount, setPeopleAmount] = useState(props.peopleAmount);
   const [maxPeopleAmount, setMaxPeopleAmount] = useState(props.maxPeopleAmount);
   const [bill, setBill] = useState(props.bill);
+
+  useEffect(() => {setBill(status==="Busy" ? props.bill : 0)}, [status])
   
   const dispatch = useDispatch();
 
