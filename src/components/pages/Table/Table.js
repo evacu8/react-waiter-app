@@ -1,6 +1,6 @@
 import { useParams, Navigate } from "react-router-dom";
 import { useSelector } from 'react-redux';
-import getTableById from '../../../redux/tablesRedux';
+import { getTableById } from '../../../redux/tablesRedux';
 import TableForm from '../../features/TableForm/TableForm';
 
 const Table = () => {
