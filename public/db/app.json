@@ -10,9 +10,9 @@
     {
       "id": "2",
       "status": "Busy",
-      "peopleAmount": "3",
+      "peopleAmount": 3,
       "maxPeopleAmount": 3,
-      "bill": "330"
+      "bill": "323"
     },
     {
       "id": "3",
