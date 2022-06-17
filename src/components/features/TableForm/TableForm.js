@@ -12,6 +12,7 @@ const TableForm = props => {
   const [bill, setBill] = useState(props.bill);
 
   useEffect(() => {setBill(status==="Busy" ? props.bill : 0)}, [status])
+  useEffect(() => {setPeopleAmount(peopleAmount>maxPeopleAmount ? maxPeopleAmount : peopleAmount)}, [maxPeopleAmount])
   
   const dispatch = useDispatch();
 
@@ -49,17 +50,21 @@ const TableForm = props => {
         </div>
         <div className="mb-3 d-flex align-items-center">
           <Form.Label htmlFor="peopleAmount" className="mb-0 me-3"><strong>People:</strong></Form.Label>
-          <div className='d-flex col-6 col-sm-6 col-lg-5 col-xl-4'>
+          <div className='d-flex col-6 col-sm-8 col-lg-6 col-xl-5'>
             <Form.Control 
-              type="text"
+              type="number"
+              min={0}
+              max={10}
               id="peopleAmount"
               aria-describedby="peopleAmount"
               value={peopleAmount} 
-              onChange={e => setPeopleAmount(e.target.value)} 
+              onChange={e => setPeopleAmount(e.target.value<=maxPeopleAmount ? e.target.value : maxPeopleAmount)} 
             />
             <div className='mx-3'>/</div>
             <Form.Control 
-              type="text"
+              type="number"
+              min={0}
+              max={10}
               id="maxPeopleAmount"
               aria-describedby="maxPeopleAmount"
               value={maxPeopleAmount} 
