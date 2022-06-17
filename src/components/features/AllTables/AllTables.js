@@ -9,11 +9,13 @@ const AllTables = () => {
 
   return (
     <Container>
-      <h2>AllTables</h2>
+      <h2 className="mb-4">All Tables</h2>
       <ul className="d-flex flex-wrap row">
         {tables.map(table => 
           <TableCard 
-            key={table.id} 
+            key={table.id}
+            id={table.id}
+            status={table.status}
           />)}
       </ul>
 
