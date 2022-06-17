@@ -7,10 +7,12 @@ const UPDATE_TABLES = actionName => createActionName('UPDATE_TABLES');
 
 // action creators
 export const updateTables = payload => ({type: UPDATE_TABLES, payload});
-export const fetchTables = dispatch => {
-  fetch('http://localhost:3131/tables')
+export const fetchTables = () => {
+  return(dispatch) => {
+    fetch('http://localhost:3131/tables')
     .then(res => res.json())
-    .then(tables => dispatch(updateTables(tables)));
+      .then(tables => dispatch(updateTables(tables)));
+  }
 };
 
 const tablesReducer = (statePart = [], action) => {
