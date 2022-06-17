@@ -1,5 +1,6 @@
 import { Card } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 const TableCard = props => {
   return (
@@ -20,5 +21,10 @@ const TableCard = props => {
     </Card>
   );
 };
+
+TableCard.propTypes = {
+  id: PropTypes.string,
+  status: PropTypes.string,
+}
 
 export default TableCard;

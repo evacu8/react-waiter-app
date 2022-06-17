@@ -16,10 +16,10 @@ const Table = () => {
       key={tableData.id}
       id={tableData.id}
       status={tableData.status}
-      peopleAmount={tableData.peopleAmount}
-      maxPeopleAmount={tableData.maxPeopleAmount}
-      bill={tableData.bill}
-      />
+      peopleAmount={parseInt(tableData.peopleAmount)}
+      maxPeopleAmount={parseInt(tableData.maxPeopleAmount)}
+      bill={parseInt(tableData.bill)}
+    />
   );
 };
 

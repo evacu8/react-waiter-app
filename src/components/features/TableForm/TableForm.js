@@ -1,8 +1,10 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { Form } from 'react-bootstrap';
 import React, { useEffect, useState } from "react";
 import { useDispatch } from 'react-redux';
 import { updateTableData } from '../../../redux/tablesRedux';
 import clsx from 'clsx';
+import PropTypes from 'prop-types';
 
 const TableForm = props => {
 
@@ -76,11 +78,12 @@ const TableForm = props => {
           <Form.Label htmlFor="bill" className="mb-0 me-3"><strong>Bill:</strong></Form.Label>
           <div className='me-2'>$</div>
           <Form.Control 
-            type="text"
+            type="number"
+            min={0}
             id="bill"
             aria-describedby="bill"
             value={bill} 
-            onChange={e => setBill(e.target.value)}
+            onChange={e => setBill(e.target.value<0 ? 0 : e.target.value)}
           />
         </div>
       </Form>
@@ -88,5 +91,13 @@ const TableForm = props => {
     </div>
   );
 };
+
+TableForm.propTypes = {
+  id: PropTypes.string,
+  status: PropTypes.string,
+  peopleAmount: PropTypes.number,
+  maxPeopleAmount: PropTypes.number,
+  bill: PropTypes.number,
+}
 
 export default TableForm;
