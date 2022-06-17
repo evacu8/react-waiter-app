@@ -2,6 +2,7 @@ import { Form } from 'react-bootstrap';
 import React, { useState } from "react";
 import { useDispatch } from 'react-redux';
 import { updateTableData } from '../../../redux/tablesRedux';
+import clsx from 'clsx';
 
 const TableForm = props => {
 
@@ -64,7 +65,7 @@ const TableForm = props => {
             />
           </div>
         </div>
-        <div className="mb-3 d-flex align-items-center col-6 col-sm-6 col-lg-5 col-xl-4">
+        <div className={clsx('mb-3', 'd-flex', 'align-items-center', 'col-6', 'col-sm-6', 'col-lg-5', 'col-xl-4', status!=="Busy" && 'd-none')}>
           <Form.Label htmlFor="bill" className="mb-0 me-3"><strong>Bill:</strong></Form.Label>
           <div className='me-2'>$</div>
           <Form.Control 
