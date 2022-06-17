@@ -12,9 +12,22 @@ export const fetchTables = () => {
   return(dispatch) => {
     fetch('http://localhost:3131/tables')
     .then(res => res.json())
-      .then(tables => dispatch(updateTables(tables)));
+    .then(tables => dispatch(updateTables(tables)));
   }
 };
+export const updateTableData = (payload) => {
+  return(dispatch) => {
+    const options = {
+      method: 'PUT',
+      headers: {
+        'Content-type': 'application/json'
+      },
+      body: JSON.stringify(payload)
+    };
+    fetch(`http://localhost:3131/tables/${payload.id}`, options)
+    .then(tables => dispatch(updateTables(tables)));
+  }
+}
 
 const tablesReducer = (statePart = [], action) => {
   switch (action.type) {

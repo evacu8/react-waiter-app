@@ -1,6 +1,7 @@
 import { Form } from 'react-bootstrap';
 import React, { useState } from "react";
-
+import { useDispatch } from 'react-redux';
+import { updateTableData } from '../../../redux/tablesRedux';
 
 const TableForm = props => {
 
@@ -8,8 +9,20 @@ const TableForm = props => {
   const [peopleAmount, setPeopleAmount] = useState(props.peopleAmount);
   const [maxPeopleAmount, setMaxPeopleAmount] = useState(props.maxPeopleAmount);
   const [bill, setBill] = useState(props.bill);
+  
+  const dispatch = useDispatch();
 
-  const handleSubmit = () => {
+  const payload = {
+    id: props.id,
+    status: status,
+    peopleAmount: peopleAmount,
+    maxPeopleAmount: maxPeopleAmount,
+    bill: bill
+  }
+
+  const handleSubmit = e => {
+    e.preventDefault();
+    dispatch(updateTableData(payload));
 
   };
 
