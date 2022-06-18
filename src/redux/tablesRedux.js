@@ -1,4 +1,6 @@
 import { API_URL } from '../config';
+console.log(API_URL);
+console.log(process.env.NODE_ENV);
 
 //selectors
 export const getAllTables = state => state.tables;
