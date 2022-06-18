@@ -5,6 +5,7 @@ import { useDispatch } from 'react-redux';
 import { updateTableData } from '../../../redux/tablesRedux';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
+import { useNavigate } from 'react-router-dom';
 
 const TableForm = props => {
 
@@ -17,6 +18,7 @@ const TableForm = props => {
   useEffect(() => {setPeopleAmount(peopleAmount>maxPeopleAmount ? maxPeopleAmount : peopleAmount)}, [maxPeopleAmount])
   
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const payload = {
     id: props.id,
@@ -29,7 +31,7 @@ const TableForm = props => {
   const handleSubmit = e => {
     e.preventDefault();
     dispatch(updateTableData(payload));
-
+    navigate("/");
   };
 
   return (
@@ -74,7 +76,7 @@ const TableForm = props => {
             />
           </div>
         </div>
-        <div className={clsx('mb-3', 'd-flex', 'align-items-center', 'col-6', 'col-sm-6', 'col-lg-5', 'col-xl-4', status!=="Busy" && 'd-none')}>
+        <div className={clsx('mb-3', 'd-flex', 'align-items-center', 'col-6', 'col-sm-7', 'col-lg-5', 'col-xl-5', status!=="Busy" && 'd-none')}>
           <Form.Label htmlFor="bill" className="mb-0 me-3"><strong>Bill:</strong></Form.Label>
           <div className='me-2'>$</div>
           <Form.Control 
