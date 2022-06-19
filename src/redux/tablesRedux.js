@@ -8,8 +8,8 @@ export const getTableById = ({ tables }, id) => tables.find(table => table.id ==
 
 // actions
 const createActionName = actionName => `app/tables/${actionName}`;
-const UPDATE_TABLES = actionName => createActionName('UPDATE_TABLES');
-const EDIT_TABLE = actionName => createActionName('EDIT_TABLE');
+const UPDATE_TABLES = () => createActionName('UPDATE_TABLES');
+const EDIT_TABLE = () => createActionName('EDIT_TABLE');
 
 // action creators
 export const updateTables = payload => ({type: UPDATE_TABLES, payload});
