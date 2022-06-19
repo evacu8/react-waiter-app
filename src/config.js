@@ -1,1 +1,1 @@
-export const API_URL = process.env.NODE_ENV === 'development' ?  'http://localhost:3131/api' : '/api'
+export const API_URL = '/api'
