@@ -5,15 +5,18 @@ console.log(process.env.NODE_ENV);
 //selectors
 export const getAllTables = state => state.tables;
 export const getTableById = ({ tables }, id) => tables.find(table => table.id === id);
+export const getLastTable = ({ tables }) => tables.find(table => parseInt(table.id) === tables.length);
 
 // actions
 const createActionName = actionName => `app/tables/${actionName}`;
 const UPDATE_TABLES = () => createActionName('UPDATE_TABLES');
 const EDIT_TABLE = () => createActionName('EDIT_TABLE');
+const ADD_TABLE = () => createActionName('ADD_TABLE');
 
 // action creators
 export const updateTables = payload => ({type: UPDATE_TABLES, payload});
 export const editTable = payload => ({type: EDIT_TABLE, payload});
+export const addNewTable = payload => ({type: ADD_TABLE, payload});
 
 export const fetchTables = () => {
   return(dispatch) => {
@@ -44,6 +47,8 @@ const tablesReducer = (statePart = [], action) => {
       return statePart.map(
         (table) => table.id === action.payload.id ? { ...table, ...action.payload } : table
       );
+    case ADD_TABLE:
+      return [...statePart, { ...action.payload }];
     default:
       return statePart;
   };
