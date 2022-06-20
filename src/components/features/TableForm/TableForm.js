@@ -1,27 +1,21 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { Form } from 'react-bootstrap';
 import React, { useEffect, useState } from "react";
-import { useDispatch } from 'react-redux';
-import { updateTableData } from '../../../redux/tablesRedux';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
-import { useNavigate } from 'react-router-dom';
 
 const TableForm = props => {
 
-  const [status, setStatus] = useState(props.status);
-  const [peopleAmount, setPeopleAmount] = useState(props.peopleAmount);
-  const [maxPeopleAmount, setMaxPeopleAmount] = useState(props.maxPeopleAmount);
-  const [bill, setBill] = useState(props.bill);
+  const [status, setStatus] = useState(props.status || 'Free');
+  const [peopleAmount, setPeopleAmount] = useState(props.peopleAmount || 0);
+  const [maxPeopleAmount, setMaxPeopleAmount] = useState(props.maxPeopleAmount || 0);
+  const [bill, setBill] = useState(props.bill || 0);
 
   useEffect(() => {setBill(status==="Busy" ? props.bill : 0)}, [status])
   useEffect(() => {setPeopleAmount(peopleAmount>maxPeopleAmount ? maxPeopleAmount : peopleAmount)}, [maxPeopleAmount])
   
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
-
   const payload = {
-    id: props.id,
+    id: props.id || '',
     status: status,
     peopleAmount: peopleAmount,
     maxPeopleAmount: maxPeopleAmount,
@@ -29,9 +23,7 @@ const TableForm = props => {
   }
 
   const handleSubmit = e => {
-    e.preventDefault();
-    dispatch(updateTableData(payload));
-    navigate("/");
+    props.action(payload);
   };
 
   return (
@@ -89,7 +81,7 @@ const TableForm = props => {
           />
         </div>
       </Form>
-      <button type="button" className='btn btn-primary' onClick={handleSubmit}>Update</button>
+      <button type="button" className='btn btn-primary' onClick={handleSubmit}>{props.actionText}</button>
     </div>
   );
 };
