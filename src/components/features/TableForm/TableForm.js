@@ -15,14 +15,14 @@ const TableForm = props => {
   useEffect(() => {setPeopleAmount(peopleAmount>maxPeopleAmount ? maxPeopleAmount : peopleAmount)}, [maxPeopleAmount])
   
   const payload = {
-    id: props.id || '',
+    id: props.id,
     status: status,
     peopleAmount: peopleAmount,
     maxPeopleAmount: maxPeopleAmount,
     bill: bill
   }
 
-  const handleSubmit = e => {
+  const handleSubmit = () => {
     props.action(payload);
   };
 

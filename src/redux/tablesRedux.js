@@ -25,6 +25,7 @@ export const fetchTables = () => {
     .then(tables => dispatch(updateTables(tables)));
   }
 };
+
 export const updateTableData = (payload) => {
   return(dispatch) => {
     const options = {
@@ -37,7 +38,22 @@ export const updateTableData = (payload) => {
     fetch(`${API_URL}/tables/${payload.id}`, options)
     .then(dispatch(editTable(payload)));
   }
-}
+};
+
+export const addTableData = (payload) => {
+  return(dispatch) => {
+    const options = {
+      method: 'POST',
+      headers: {
+        'Content-type': 'application/json'
+      },
+      body: JSON.stringify(payload)
+    };
+    fetch(`${API_URL}/tables`, options)
+    .then(() => dispatch(addNewTable(payload)))
+    .then(() => fetchTables());
+  }
+};
 
 const tablesReducer = (statePart = [], action) => {
   switch (action.type) {
@@ -48,7 +64,7 @@ const tablesReducer = (statePart = [], action) => {
         (table) => table.id === action.payload.id ? { ...table, ...action.payload } : table
       );
     case ADD_TABLE:
-      return [...statePart, { ...action.payload }];
+      return [...statePart, ...action.payload];
     default:
       return statePart;
   };
