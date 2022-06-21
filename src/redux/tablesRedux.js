@@ -1,6 +1,6 @@
 import { API_URL } from '../config';
-console.log(API_URL);
-console.log(process.env.NODE_ENV);
+console.log("API_URL:", API_URL);
+console.log("NODE_ENV:", process.env.NODE_ENV);
 
 //selectors
 export const getAllTables = state => state.tables;
@@ -12,11 +12,13 @@ const createActionName = actionName => `app/tables/${actionName}`;
 const UPDATE_TABLES = () => createActionName('UPDATE_TABLES');
 const EDIT_TABLE = () => createActionName('EDIT_TABLE');
 const ADD_TABLE = () => createActionName('ADD_TABLE');
+const REMOVE_TABLE = () => createActionName('REMOVE_TABLE');
 
 // action creators
 export const updateTables = payload => ({type: UPDATE_TABLES, payload});
 export const editTable = payload => ({type: EDIT_TABLE, payload});
 export const addNewTable = payload => ({type: ADD_TABLE, payload});
+export const removeTable = payload => ({type: REMOVE_TABLE, payload});
 
 export const fetchTables = () => {
   return(dispatch) => {
@@ -55,6 +57,19 @@ export const addTableData = (payload) => {
   }
 };
 
+export const removeTableData = (payload) => {
+  return(dispatch) => {
+    const options = {
+      method: 'DELETE',
+      headers: {
+        'Content-type': 'application/json'
+      }
+    };
+    fetch(`${API_URL}/tables/${payload}`, options)
+    .then(() => dispatch(removeTable(payload)))
+  }
+};
+
 const tablesReducer = (statePart = [], action) => {
   switch (action.type) {
     case UPDATE_TABLES:
@@ -65,6 +80,8 @@ const tablesReducer = (statePart = [], action) => {
       );
     case ADD_TABLE:
       return [...statePart, ...action.payload];
+    case REMOVE_TABLE:
+      return statePart.filter(table => (table.id !== action.payload))
     default:
       return statePart;
   };

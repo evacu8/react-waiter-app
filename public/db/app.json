@@ -30,16 +30,9 @@
     },
     {
       "id": "5",
-      "status": "Free",
-      "peopleAmount": "0",
-      "maxPeopleAmount": 4,
-      "bill": 0
-    },
-    {
-      "id": "6",
-      "status": "Free",
-      "peopleAmount": "0",
-      "maxPeopleAmount": 5,
+      "status": "Reserved",
+      "peopleAmount": "5",
+      "maxPeopleAmount": "5",
       "bill": 0
     }
   ]
