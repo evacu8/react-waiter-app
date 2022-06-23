@@ -5,7 +5,8 @@ console.log("NODE_ENV:", process.env.NODE_ENV);
 //selectors
 export const getAllTables = state => state.tables;
 export const getTableById = ({ tables }, id) => tables.find(table => table.id === id);
-export const getLastTable = ({ tables }) => tables.find(table => parseInt(table.id) === tables.length);
+// export const getLastTable = ({ tables }) => tables.find(table => parseInt(table.id) === tables.length);
+export const getLastTable = ({ tables }) => tables.find(table => (parseInt(table.id) +1) !== true);
 
 // actions
 const createActionName = actionName => `app/tables/${actionName}`;
