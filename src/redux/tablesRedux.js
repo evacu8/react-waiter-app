@@ -5,7 +5,6 @@ console.log("NODE_ENV:", process.env.NODE_ENV);
 //selectors
 export const getAllTables = state => state.tables;
 export const getTableById = ({ tables }, id) => tables.find(table => table.id === id);
-// export const getLastTable = ({ tables }) => tables.find(table => table.id === ifNextDoesNotExist(table));
 
 // actions
 const createActionName = actionName => `app/tables/${actionName}`;
@@ -74,21 +73,13 @@ export const removeTableData = (payload) => {
 };
 
 const compare = (tableOne, tableTwo) => {
-  if(tableOne.id < tableTwo.id +1){
+  if(parseInt(tableOne.id) < parseInt(tableTwo.id) +1){
     return -1;
   };
-  if(tableOne.id > tableTwo.id +1){
+  if(parseInt(tableOne.id) > parseInt(tableTwo.id) +1){
     return 1;
   };
 }
-
-// const ifNextDoesNotExist = table => {
-//   const nextTableId = parseInt(table.id) +1;
-//   console.log(table.id, nextTableId)
-//   if(!table.nextTableId){
-//     return table.id;
-//   }
-// }
 
 const tablesReducer = (statePart = [], action) => {
   switch (action.type) {

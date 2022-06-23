@@ -50,14 +50,28 @@
       "bill": 0
     },
     {
-      "id": "9",
+      "id": "3",
       "status": "Free",
       "peopleAmount": 0,
       "maxPeopleAmount": 0,
       "bill": 0
     },
     {
-      "id": "3",
+      "id": "10",
+      "status": "Free",
+      "peopleAmount": 0,
+      "maxPeopleAmount": 0,
+      "bill": 0
+    },
+    {
+      "id": "11",
+      "status": "Free",
+      "peopleAmount": 0,
+      "maxPeopleAmount": 0,
+      "bill": 0
+    },
+    {
+      "id": "9",
       "status": "Free",
       "peopleAmount": 0,
       "maxPeopleAmount": 0,
