@@ -1,7 +1,7 @@
 import TableForm from '../../features/TableForm/TableForm';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { addTableData, getLastTable } from '../../../redux/tablesRedux';
+import { addTableData, getAllTables } from '../../../redux/tablesRedux';
 
 
 const AddTable = () => {
@@ -14,9 +14,20 @@ const AddTable = () => {
     navigate("/");
   };
 
-  const lastTable = useSelector(state=>getLastTable(state));
-  
-  const id = (parseInt(lastTable.id) + 1).toString();
+  const allTables = useSelector(state=>getAllTables(state));
+
+  const checkId = (allTables) => {
+    const idArray = [];
+    for (let table of allTables){
+      idArray.push(parseInt(table.id));
+    }
+    const filteredArray = idArray.filter(id => !(idArray.includes(id + 1)));
+    const lowestId = filteredArray[0] + 1
+    const id = lowestId.toString();
+    return id;
+  }
+    
+  const id = checkId(allTables) ;
 
   return (
     <div>
@@ -27,5 +38,6 @@ const AddTable = () => {
     </div>
   );
 };
+
 
 export default AddTable;
